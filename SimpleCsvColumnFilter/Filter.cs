@@ -17,7 +17,7 @@ namespace SimpleCsvColumnFilter
 		{
 			var splitLines = File.ReadAllLines(Url).Select(line => line.Split(new []{Delimiter}, StringSplitOptions.None));
 
-			var filteredLines = splitLines.Select(splitLine => splitLine.Take(ColumnIndexToIgnore).Concat(splitLine.Skip(ColumnIndexToIgnore))).Select(line => string.Join(Delimiter, line.ToArray()));
+			var filteredLines = splitLines.Select(splitLine => splitLine.Take(ColumnIndexToIgnore).Concat(splitLine.Skip(ColumnIndexToIgnore+1))).Select(line => string.Join(Delimiter, line.ToArray()));
 
 			File.Delete(Url);
 			File.WriteAllLines(Url, filteredLines);
