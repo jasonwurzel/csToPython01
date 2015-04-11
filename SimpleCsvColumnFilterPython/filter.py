@@ -11,4 +11,6 @@ with open('C:\Users\Milly\Documents\Visual Studio 2013\Projects\SimpleCsvColumnF
         for w in words[index+1:len(words)]:
             filteredWords.append(w)
         filteredLine = ";".join(filteredWords)
-        filteredLines.append(filteredLine)
+        filteredLines.append(filteredLine + "\n")
+with open('C:\Users\Milly\Documents\Visual Studio 2013\Projects\SimpleCsvColumnFilter\Tests\FilterThirdCol\input_filtered.csv', 'w' ) as myFilteredFile:
+    myFilteredFile.writelines(filteredLines)
