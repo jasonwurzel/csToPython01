@@ -1,4 +1,4 @@
-from filter import process
+from filter import FilterCsvFile
 import unittest
 import os
 
@@ -6,12 +6,13 @@ import os
 class FilterThirdColumnFromCsvFile(unittest.TestCase):
     def testDummy(self):
         # arrange
-        inputFilePath = 'C:\Users\Milly\Documents\Visual Studio 2013\Projects\SimpleCsvColumnFilter\Tests\FilterThirdCol\input.csv'
-        expectedFilePath = 'C:\Users\Milly\Documents\Visual Studio 2013\Projects\SimpleCsvColumnFilter\Tests\FilterThirdCol\expected.csv'
+        testBasePath = os.path.join(os.path.split(os.path.split(__file__)[0])[0], 'Tests','FilterThirdCol')
+        inputFilePath = os.path.join(testBasePath, 'input.csv')
+        expectedfilepath = os.path.join(testBasePath, 'expected.csv')
         #act
-        outputFilePath = process(inputFilePath, 2)
+        outputFilePath = FilterCsvFile.process(inputFilePath, 2)
         #assert
-        with open(expectedFilePath) as expectedFile, open(outputFilePath) as outputFile:
+        with open(expectedfilepath) as expectedFile, open(outputFilePath) as outputFile:
             expectedContent = expectedFile.read().replace('\n', '')
             outputContent = outputFile.read().replace('\n', '')
             assert outputContent==expectedContent
