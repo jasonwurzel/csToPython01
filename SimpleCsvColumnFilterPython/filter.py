@@ -11,9 +11,9 @@ class FilterCsvFile():
     @staticmethod
     def process(inputfilepath, indexToOmit):
         outputfilepath = os.path.splitext(inputfilepath)[0] + '_filtered' + os.path.splitext(inputfilepath)[1]
-        with open(inputfilepath, 'rb') as csvfile, open(outputfilepath, 'wb') as myFilteredFile:
+        with open(inputfilepath, 'r') as csvfile, open(outputfilepath, 'w') as myFilteredFile:
             reader = csv.reader(csvfile, delimiter=';')
-            writer = csv.writer(myFilteredFile, delimiter=';')
+            writer = csv.writer(myFilteredFile, delimiter=';', lineterminator='\n')
             for line in reader:
                 filteredWords = line[:indexToOmit] + line[indexToOmit + 1:]
                 writer.writerow(filteredWords)
